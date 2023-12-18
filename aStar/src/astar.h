@@ -1,9 +1,13 @@
 #ifndef ASTAR_H
 #define ASTAR_H
 
-// Define the size of the grid
-#define GRID_ROWS 5
-#define GRID_COLS 5
+#define GRID_ROWS 30
+#define GRID_COLS 30
+#define WINDOW_HEIGHT 800
+#define WINDOW_WIDTH 800
+#define CELL_HEIGHT (WINDOW_WIDTH/GRID_COLS)
+#define CELL_WIDTH (WINDOW_HEIGHT/GRID_ROWS)
+
 
 // Structure to represent a node in the grid
 typedef struct {
