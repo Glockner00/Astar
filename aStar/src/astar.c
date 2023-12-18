@@ -10,26 +10,10 @@ int start = 2;
 int end = 3;
 
 void initializeSDL() {
-  // Initialize SDL
-  if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-    fprintf(stderr, "SDL initialization failed: %s\n", SDL_GetError());
-    // Handle error or exit the program
-  }
-
   // Create a window and renderer
   window = SDL_CreateWindow("A-Star Visualization", SDL_WINDOWPOS_CENTERED,
-                            SDL_WINDOWPOS_CENTERED, 800, 600, 0);
-  if (window == NULL) {
-    fprintf(stderr, "Window creation failed: %s\n", SDL_GetError());
-    // Handle error or exit the program
-  }
-
-  renderer = SDL_CreateRenderer(
-      window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-  if (renderer == NULL) {
-    fprintf(stderr, "Renderer creation failed: %s\n", SDL_GetError());
-    // Handle error or exit the program
-  }
+                            SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
+  renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 }
 
 void cleanupSDL() {
@@ -65,15 +49,13 @@ void renderGridLines() {
 void renderGrid(const int grid[GRID_ROWS][GRID_COLS]) {
   // Clear the renderer
   SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-  SDL_SetWindowSize(window, WINDOW_WIDTH, WINDOW_HEIGHT);
   SDL_RenderClear(renderer);
 
   // Draw the grid
   for (int i = 0; i < GRID_ROWS; ++i) {
     for (int j = 0; j < GRID_COLS; ++j) {
       // Draw a rectangle for each grid cell
-      SDL_Rect rect = {j * (WINDOW_WIDTH / GRID_COLS), i * (WINDOW_HEIGHT / GRID_ROWS),
-                       WINDOW_WIDTH / GRID_COLS, WINDOW_HEIGHT / GRID_ROWS};
+      SDL_Rect rect = {(i*CELL_WIDTH), (j*CELL_HEIGHT), CELL_WIDTH, CELL_HEIGHT};
 
       if (grid[i][j] == 1) {
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); // Black for obstacles
@@ -85,7 +67,7 @@ void renderGrid(const int grid[GRID_ROWS][GRID_COLS]) {
         SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 
       } else {
-        SDL_SetRenderDrawColor(renderer, 255, 255, 255,255); // white for open cells
+        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255); // white for open cells
       }
 
       SDL_RenderFillRect(renderer, &rect);
