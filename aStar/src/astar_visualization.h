@@ -1,6 +1,6 @@
-
-#ifndef ASTAR_H
-#define ASTAR_H
+//astar_visualization.h
+#ifndef ASTAR_VISUALIZATION_H
+#define ASTAR_VISUALIZATION_H
 
 #define GRID_ROWS 40
 #define GRID_COLS 40
@@ -41,5 +41,5 @@ void cleanupSDL();
  */
 void initializeSDL();
 
-#endif // ASTAR_H
+#endif
 

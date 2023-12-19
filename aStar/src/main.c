@@ -1,6 +1,6 @@
 
 // main.c
-#include "astar.h"
+#include "astar_visualization.h"
 #include <SDL2/SDL.h>
 
 int main() {

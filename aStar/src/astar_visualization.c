@@ -1,4 +1,5 @@
-#include "astar.h"
+//astar_visualization.h
+#include "astar_visualization.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL_video.h>
